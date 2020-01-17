@@ -60,7 +60,7 @@ def on_play_list_double_clicked(event=None):
     pass
 
 frame = tk.Frame(root)
-Video_path = "/Users/plangle-08/Player/compressed_images/Compressed_scene_04_shot_10_0053.jpg"
+Video_path = "/Users/plangle-08/Documents/GitHub/tkinter_player/100_jpg_images/shot_01_v010593.jpg"
 img = Image.open(Video_path)
 background_image = ImageTk.PhotoImage(img)
 background = tk.Label(frame,image=background_image)
