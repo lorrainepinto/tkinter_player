@@ -10,9 +10,10 @@ Video_path = "/Users/plangle-08/Player/compressed_images"
 doctor = []
 
 for file in os.listdir(Video_path):
-    img = Image.open(Video_path + '/' + file)
-    doctor.append(img)
-    print("loading ", len(doctor))
+    if file.endswith(".jpg"):
+        img = Image.open(Video_path + '/' + file)
+        doctor.append(img)
+        print("loading ", len(doctor))
 
 ############################################################################################
 

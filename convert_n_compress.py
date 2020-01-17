@@ -27,8 +27,8 @@ if len(sys.argv) > 1:
         verbose = True
 
 #pwd = "/Users/plangle-08/Player/shot_01_playbalst_v01"      # jpeg images
-pwd = "/Users/plangle-08/Player/51-704_images"              # large png set
-#pwd = "/Users/plangle-08/Player/50_images"                    # small png set
+#pwd = "/Users/plangle-08/Player/51-704_images"              # large png set
+pwd = "/Users/plangle-08/Player/50_images"                    # small png set
 jpg_pwd = "/Users/plangle-08/Player/converted_images"         # directory for converted images
 compress_pwd = "/Users/plangle-08/Player/compressed_images"   # directory for compressed images
 
@@ -46,9 +46,12 @@ loop_variable = int(ending_string)
 # ----------------------- JPG CONVERSION --------------------------------------------------------------------------------
 while os.path.exists(pwd + '/' + file):
     img = Image.open(pwd + '/' + file)
-    imag = img.convert('RGB')  # converting to jpeg
-    imag = imag.resize((960, 540))
-    imag.save(jpg_pwd + '/' + file.replace("png", "jpg"), quality=95)
+    if file.endswith(".jpg" or "jpeg"):
+        imag = img.resize((960, 540))
+    else:
+        imag = img.convert('RGB')  # converting to jpeg
+        imag = imag.resize((960, 540))
+    imag.save(jpg_pwd + '/' + file.replace(".png" or ".jpeg", ".jpg"), quality=95)
     file = file.replace((str(loop_variable)).zfill(padding), (str(loop_variable + 1)).zfill(padding))  # next image
     loop_variable += 1  # update of image no
     print("converting ", loop_variable)
@@ -59,9 +62,10 @@ print("conversion done...")
 num = 0
 tot = 0
 for new_file in os.listdir(jpg_pwd):
-    print("compressing ", num + 1)
-    num += 1
-    tot += compressMe(new_file, verbose)
+    if new_file.endswith(".jpg"):
+        print("compressing ", num + 1)
+        num += 1
+        tot += compressMe(new_file, verbose)
 
 print("Average Compression: %d" % (float(tot) / num))
 print("Done")
