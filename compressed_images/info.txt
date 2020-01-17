@@ -1,0 +1,1 @@
+RUN  delete_contents.py t empty the directory
