@@ -4,7 +4,7 @@ import tkinter.ttk
 from PIL import Image,ImageTk
 
 root = Tk()
-root.geometry("{}x{}".format(965, 600))
+root.geometry("{}x{}".format(970, 600))
 def on_previous_track_button_clicked():
     pass
 
@@ -112,6 +112,5 @@ status = Label(frame,text="testing.." ,bd=1,relief=SUNKEN , anchor=W)
 status.grid(row=3,columnspan=6 ,sticky='we', padx=3)
 
 frame.grid(row=1, columnspan=6, sticky='we')
-print()
 
 root.mainloop()
