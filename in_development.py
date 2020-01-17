@@ -106,9 +106,12 @@ next_track_button.grid(row=1, column=5,sticky='we')
 volume_scale = tkinter.ttk.Scale(
     frame, from_=0.0, to=1.0, length=960, command=on_volume_scale_changed)
 volume_scale.set(0.6)
-volume_scale.grid(row=2, columnspan=6,sticky='we')
+volume_scale.grid(row=2, columnspan=6, padx=3 , sticky='we')
 
-frame.grid(row=1, columnspan=5, sticky='we')
+status = Label(frame,text="testing.." ,bd=1,relief=SUNKEN , anchor=W)
+status.grid(row=3,columnspan=6 ,sticky='we', padx=3)
 
+frame.grid(row=1, columnspan=6, sticky='we')
+print()
 
 root.mainloop()
