@@ -5,7 +5,7 @@ import os.path
 ################################_LOADING_THE IMAGES_########################################
 # this will be passed on application usage
 
-Video_path = "/Users/plangle-08/Player/compressed_images"
+Video_path =  "/Users/plangle-08/Documents/GitHub/tkinter_player/compressed_images"
 
 doctor = []
 
