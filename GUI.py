@@ -13,8 +13,8 @@ root.minsize(250, 100)
 
 class puhlayer:
     def __init__(self):
-        status = tk.Label(root, text="    loading..", bd=1, relief=SUNKEN, anchor=W)
-        status.pack(side=BOTTOM, fill=X, )
+        self.status = tk.Label(root, text="    loading..", bd=1, relief=SUNKEN, anchor=W)
+        self.status.pack(side=BOTTOM, fill=X, )
 
         self.framey = tk.Frame(root)
         self.imglist = []    #CHECK
@@ -66,7 +66,7 @@ class puhlayer:
         self.background_label.bind('<Configure>', self._resize_image)
 
     def on_previous_track_button_clicked(self):
-        pass
+        self.scrollbar.set(1)
 
     def on_play_button_clicked(self):
         self.i = int(self.scrollbar.get())
@@ -83,11 +83,10 @@ class puhlayer:
             for job in self.all_jobs:
                 self.background_label.after_cancel(job)
             self._job = None
-        print(len(self.imglist)-len(self.imglist_copy))
 
 
     def on_next_track_button_clicked(self):
-        pass
+        self.scrollbar.set(100)
 
     def on_scrollbar_changed(self,e=None):
         value = self.scrollbar.get()
@@ -103,6 +102,8 @@ class puhlayer:
         self.background_label.configure(image=self.background_image)
         self.background_label.pack(side=BOTTOM,fill=BOTH, expand=YES)
         self.background_label.bind('<Configure>', self._resize_image)
+        text = "playing image " + str(round(value))
+        self.status.configure(text=text)
 
     def load_img(self):
         ################################_LOADING_THE IMAGES_########################################
@@ -115,7 +116,7 @@ class puhlayer:
                 img = Image.open(Video_path + '/' + file)
                 self.imglist.append(img)
                 #print("loading ", len(self.imglist))    #FOR DEBUGGING
-        self.imglist_copy = self.imglist.copy()
+
         ############################################################################################
 
 
@@ -133,12 +134,12 @@ class puhlayer:
         #print(self.i)  # FOR DEBUGGING
         self.image = self.imglist[self.i]
         self.img_copy = self.image.copy()
-        self.imglist_copy.pop(0)
 
 
         self.scrollbar.set(self.i)
         self.img = self.img_copy.resize((self.new_width, self.new_height))
-
+        text = "playing image " + str(self.i)
+        self.status.configure(text=text)
         self.background_image = ImageTk.PhotoImage(self.img)
         self.background_label.pack(side=BOTTOM,fill=BOTH, expand=YES)
         self.background_label.configure(image=self.background_image)
