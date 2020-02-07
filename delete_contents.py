@@ -1,8 +1,12 @@
 import os
 
-jpg_pwd = "/Users/plangle-08/Documents/GitHub/tkinter_player/converted_images"
+plangle_path = "/Users/plangle-08/Documents/GitHub/tkinter_player"
+#pinto_path = ""
+root_path = plangle_path
+
+jpg_pwd = root_path+"/converted_images"
 # directory for converted images
-compress_pwd = "/Users/plangle-08/Documents/GitHub/tkinter_player/compressed_images"
+compress_pwd = root_path+"/compressed_images"
 
 for filename in os.listdir(jpg_pwd):
     file_path = os.path.join(jpg_pwd, filename)

@@ -13,6 +13,9 @@ import tkinter.ttk
 from PIL import Image, ImageTk
 import os.path
 
+plangle_path = "/Users/plangle-08/Documents/GitHub/tkinter_player"
+#pinto_path = ""
+root_path = plangle_path
 
 root = tk.Tk()
 
@@ -29,6 +32,7 @@ class puhlayer:
         self.imglist = []    #CHECK
 
         self.flag = False
+        self.loop_flag = False
         root.bind("<space>",self.space_key)
         root.bind("<Right>",self.Right_key)
         root.bind("<Left>",self.Left_key)
@@ -38,31 +42,38 @@ class puhlayer:
         self.new_width , self.new_height = self.imglist[0].size
 
         previous_track_icon = tk.PhotoImage(
-            file='/Users/plangle-08/Documents/GitHub/tkinter_player/player_icons/previous_track.gif')
+            file=root_path+'/player_icons/previous_track.gif')
         previous_track_button = tk.Button(
             self.framey, image=previous_track_icon, borderwidth=0, padx=0,
             command=self.on_previous_track_button_clicked)
         previous_track_button.image = previous_track_icon
         previous_track_button.pack(side=LEFT)
 
-        play_icon = tk.PhotoImage(file='/Users/plangle-08/Documents/GitHub/tkinter_player/player_icons/play.gif')
+        play_icon = tk.PhotoImage(file=root_path+'/player_icons/play.gif')
         play_stop_button = tk.Button(
             self.framey, image=play_icon, borderwidth=0, padx=0, command=self.on_play_button_clicked)
         play_stop_button.image = play_icon
         play_stop_button.pack(side=LEFT)
 
-        pause_icon = tk.PhotoImage(file='/Users/plangle-08/Documents/GitHub/tkinter_player/player_icons/pause.gif')
+        pause_icon = tk.PhotoImage(file=root_path+'/player_icons/pause.gif')
         pause_unpause_button = tk.Button(
             self.framey, image=pause_icon, borderwidth=0, padx=0, command=self.on_pause_button_clicked)
         pause_unpause_button.image = pause_icon
         pause_unpause_button.pack(side=LEFT)
 
         next_track_icon = tk.PhotoImage(
-            file='/Users/plangle-08/Documents/GitHub/tkinter_player/player_icons/next_track.gif')
+            file=root_path+'/player_icons/next_track.gif')
         next_track_button = tk.Button(
             self.framey, image=next_track_icon, borderwidth=0, padx=0, command=self.on_next_track_button_clicked)
         next_track_button.image = next_track_icon
         next_track_button.pack(side=LEFT)
+
+        loop_icon = tk.PhotoImage(
+            file=root_path + "/player_icons/black_loop.png")
+        loop_button = tk.Button(
+            self.framey, image=loop_icon, borderwidth=0, padx=0, command=self.on_loop_button_clicked)
+        loop_button.image = loop_icon
+        loop_button.pack(side=LEFT)
 
         self.scrollbar = tkinter.ttk.Scale(
             self.framey, from_=1, to=int(len(self.imglist)), command=self.on_scrollbar_changed)
@@ -76,6 +87,12 @@ class puhlayer:
         self.background_label = tk.Label(root, image=self.background_image)
         self.background_label.pack(side=BOTTOM, fill=BOTH, expand=YES)
         self.background_label.bind('<Configure>', self._resize_image)
+
+    def on_loop_button_clicked(self):
+        if self.loop_flag:
+            self.loop_flag = False
+        else:
+            self.loop_flag = True
 
     def on_previous_track_button_clicked(self):
         self.scrollbar.set(1)
@@ -124,7 +141,7 @@ class puhlayer:
         ################################_LOADING_THE IMAGES_########################################
         # this will be passed on application usage
 
-        Video_path = "/Users/plangle-08/Documents/GitHub/tkinter_player/compressed_images"
+        Video_path = root_path+"/compressed_images"
 
         for file in os.listdir(Video_path):
             if file.endswith(".jpg"):
@@ -146,6 +163,9 @@ class puhlayer:
     def _change_image(self):
         self.i = self.i + 1
         self.scrollbar.set(self.i)
+        if(self.i is len(self.imglist) and self.loop_flag):
+            self.scrollbar.set(1)
+            self.on_play_button_clicked()
 
     def space_key(self,event):
         if self.flag:
@@ -156,6 +176,7 @@ class puhlayer:
     def Right_key(self,event):
         value = self.scrollbar.get()
         self.scrollbar.set(round(value)+1)
+
     def Left_key(self,event):
         value = self.scrollbar.get()
         self.scrollbar.set(round(value)-1)

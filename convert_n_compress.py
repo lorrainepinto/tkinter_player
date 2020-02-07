@@ -5,6 +5,9 @@ import sys
 
 from PIL import Image
 
+plangle_path = "/Users/plangle-08/Documents/GitHub/tkinter_player"
+#pinto_path = ""
+root_path = plangle_path
 
 def compressMe(file, verbose=False):
     filepath = jpg_pwd + '/' + file
@@ -26,10 +29,10 @@ if len(sys.argv) > 1:
     if sys.argv[1].lower() == "-v":
         verbose = True
 
-pwd = "/Users/plangle-08/Documents/GitHub/tkinter_player/100_jpg_images"           # jpeg images
-#pwd = "/Users/plangle-08/Documents/GitHub/tkinter_player/50_png_images"                    # small png set
-jpg_pwd = "/Users/plangle-08/Documents/GitHub/tkinter_player/converted_images"         # directory for converted images
-compress_pwd = "/Users/plangle-08/Documents/GitHub/tkinter_player/compressed_images"   # directory for compressed images
+pwd = root_path + "/100_jpg_images"           # jpeg images
+#pwd = root_path + "/50_png_images"                    # small png set
+jpg_pwd = root_path + "/converted_images"         # directory for converted images
+compress_pwd = root_path + "/compressed_images"   # directory for compressed images
 
 # ------------- FINDING FIRST FILE WITH JPEG OR PNG EXTENSION -----------------------------------------------------------
 for file in os.listdir(pwd):
