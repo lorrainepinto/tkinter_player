@@ -1,10 +1,11 @@
-"""1.zoom & panning & fit to screen
-2.image name
-3.fps
-4.aspect ratio
-5.RAM storage
-6.crap timeline(in & out)
-7.loop
+"""
+1.image name
+2.fps
+3.loop
+4.zoom & panning & fit to screen
+5.aspect ratio
+6.RAM storage
+7.crop timeline(in & out)
 """
 from tkinter import *
 import tkinter as tk
@@ -69,7 +70,7 @@ class puhlayer:
 
         self.framey.pack(side=BOTTOM, fill=X)
 
-        self.img =self.imglist[0]
+        self.img = self.imglist[0]
         self.background_image = ImageTk.PhotoImage(self.img)
         self.img_copy = self.img.copy()
         self.background_label = tk.Label(root, image=self.background_image)
