@@ -26,10 +26,10 @@ if len(sys.argv) > 1:
     if sys.argv[1].lower() == "-v":
         verbose = True
 
-pwd = "C:\\Users\\pinto\\Documents\\GitHub\\tkinter_player\\100_jpg_images"           # jpeg images
+pwd = "/Users/plangle-08/Documents/GitHub/tkinter_player/100_jpg_images"           # jpeg images
 #pwd = "/Users/plangle-08/Documents/GitHub/tkinter_player/50_png_images"                    # small png set
-jpg_pwd = "C:\\Users\\pinto\\Documents\\GitHub\\tkinter_player\\converted_images"         # directory for converted images
-compress_pwd = "C:\\Users\\pinto\\Documents\\GitHub\\tkinter_player\\compressed_images"   # directory for compressed images
+jpg_pwd = "/Users/plangle-08/Documents/GitHub/tkinter_player/converted_images"         # directory for converted images
+compress_pwd = "/Users/plangle-08/Documents/GitHub/tkinter_player/compressed_images"   # directory for compressed images
 
 # ------------- FINDING FIRST FILE WITH JPEG OR PNG EXTENSION -----------------------------------------------------------
 for file in os.listdir(pwd):

@@ -1,3 +1,11 @@
+"""1.zoom & panning & fit to screen
+2.image name
+3.fps
+4.aspect ratio
+5.RAM storage
+6.crap timeline(in & out)
+7.loop
+"""
 from tkinter import *
 import tkinter as tk
 import tkinter.ttk
@@ -29,27 +37,27 @@ class puhlayer:
         self.new_width , self.new_height = self.imglist[0].size
 
         previous_track_icon = tk.PhotoImage(
-            file='C:\\Users\\pinto\\Documents\\GitHub\\tkinter_player\\player_icons\\previous_track.gif')
+            file='/Users/plangle-08/Documents/GitHub/tkinter_player/player_icons/previous_track.gif')
         previous_track_button = tk.Button(
             self.framey, image=previous_track_icon, borderwidth=0, padx=0,
             command=self.on_previous_track_button_clicked)
         previous_track_button.image = previous_track_icon
         previous_track_button.pack(side=LEFT)
 
-        play_icon = tk.PhotoImage(file='C:\\Users\\pinto\\Documents\\GitHub\\tkinter_player\\player_icons\\play.gif')
+        play_icon = tk.PhotoImage(file='/Users/plangle-08/Documents/GitHub/tkinter_player/player_icons/play.gif')
         play_stop_button = tk.Button(
             self.framey, image=play_icon, borderwidth=0, padx=0, command=self.on_play_button_clicked)
         play_stop_button.image = play_icon
         play_stop_button.pack(side=LEFT)
 
-        pause_icon = tk.PhotoImage(file='C:\\Users\\pinto\\Documents\\GitHub\\tkinter_player\\player_icons\\pause.gif')
+        pause_icon = tk.PhotoImage(file='/Users/plangle-08/Documents/GitHub/tkinter_player/player_icons/pause.gif')
         pause_unpause_button = tk.Button(
             self.framey, image=pause_icon, borderwidth=0, padx=0, command=self.on_pause_button_clicked)
         pause_unpause_button.image = pause_icon
         pause_unpause_button.pack(side=LEFT)
 
         next_track_icon = tk.PhotoImage(
-            file='C:\\Users\\pinto\\Documents\\GitHub\\tkinter_player\\player_icons\\next_track.gif')
+            file='/Users/plangle-08/Documents/GitHub/tkinter_player/player_icons/next_track.gif')
         next_track_button = tk.Button(
             self.framey, image=next_track_icon, borderwidth=0, padx=0, command=self.on_next_track_button_clicked)
         next_track_button.image = next_track_icon
@@ -115,7 +123,7 @@ class puhlayer:
         ################################_LOADING_THE IMAGES_########################################
         # this will be passed on application usage
 
-        Video_path = "C:\\Users\\pinto\\Documents\\GitHub\\tkinter_player\\compressed_images"
+        Video_path = "/Users/plangle-08/Documents/GitHub/tkinter_player/compressed_images"
 
         for file in os.listdir(Video_path):
             if file.endswith(".jpg"):
