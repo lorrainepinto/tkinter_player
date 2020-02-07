@@ -5,7 +5,7 @@ import os.path
 ################################_LOADING_THE IMAGES_########################################
 # this will be passed on application usage
 
-Video_path =  "/Users/plangle-08/Documents/GitHub/tkinter_player/compressed_images"
+Video_path = "C:\\Users\\pinto\\Documents\\GitHub\\tkinter_player\\compressed_images"
 
 doctor = []
 
@@ -48,6 +48,8 @@ class Example(Frame):
         new_width = event.width
         new_height = event.height
 
+        print(f"new width and height {new_width} {new_height}")
+
         self.image = self.img_copy.resize((new_width, new_height))
 
         self.background_image = ImageTk.PhotoImage(self.image)
@@ -55,14 +57,15 @@ class Example(Frame):
 
     def _change_image(self):
         self.i = self.i + 1
-        print(self.i)  # FOR DEBUGGING
-        self.background.bind('<Configure>', self._resize_image)
+        # print(self.i)  # FOR DEBUGGING
+        # self.background.bind('<Configure>', self._resize_image)
         self.image = doctor[self.i]
         self.img_copy = self.image.copy()
 
         self.background_image = ImageTk.PhotoImage(self.image)
-        self.background.configure(image=self.background_image)
+        # self.background.configure(image=self.background_image)
         self.background.pack(fill=BOTH, expand=YES)
+        self.background.configure(image=self.background_image)
 
 
 e = Example(root)

@@ -60,44 +60,44 @@ def on_play_list_double_clicked(event=None):
     pass
 
 frame = tk.Frame(root)
-Video_path = "/Users/plangle-08/Documents/GitHub/tkinter_player/100_jpg_images/shot_01_v010593.jpg"
+Video_path = "C:\\Users\\pinto\\Documents\\GitHub\\tkinter_player\\100_jpg_images\\shot_01_v010593.jpg"
 img = Image.open(Video_path)
 background_image = ImageTk.PhotoImage(img)
 background = tk.Label(frame,image=background_image)
 background.grid(row=0,columnspan=7)
 
-previous_track_icon = tk.PhotoImage(file='/Users/plangle-08/Player/player_icons/previous_track.gif')
+previous_track_icon = tk.PhotoImage(file='C:\\Users\\pinto\\Documents\\GitHub\\tkinter_player\\player_icons\\previous_track.gif')
 previous_track_button = tk.Button(
     frame, image=previous_track_icon, borderwidth=0, padx=0, command=on_previous_track_button_clicked)
 previous_track_button.image = previous_track_icon
 previous_track_button.grid(row=1, column=0, sticky='we')
 
-rewind_icon = tk.PhotoImage(file='/Users/plangle-08/Player/player_icons/rewind.gif')
+rewind_icon = tk.PhotoImage(file='C:\\Users\\pinto\\Documents\\GitHub\\tkinter_player\\player_icons\\rewind.gif')
 rewind_button = tk.Button(
     frame, image=rewind_icon, borderwidth=0, padx=0, command=on_rewind_button_clicked)
 rewind_button.image = rewind_icon
 rewind_button.grid(row=1, column=1, sticky='we')
 
-play_icon = tk.PhotoImage(file='/Users/plangle-08/Player/player_icons/play.gif')
-stop_icon = tk.PhotoImage(file='/Users/plangle-08/Player/player_icons/stop.gif')
+play_icon = tk.PhotoImage(file='C:\\Users\\pinto\\Documents\\GitHub\\tkinter_player\\player_icons\\play.gif')
+stop_icon = tk.PhotoImage(file='C:\\Users\\pinto\\Documents\\GitHub\\tkinter_player\\player_icons\\stop.gif')
 play_stop_button = tk.Button(
     frame, image=play_icon, borderwidth=0, padx=0, command=on_play_stop_button_clicked)
 play_stop_button.image = play_icon
 play_stop_button.grid(row=1, column=2,sticky='we')
 
-pause_icon = tk.PhotoImage(file='/Users/plangle-08/Player/player_icons/pause.gif')
+pause_icon = tk.PhotoImage(file='C:\\Users\\pinto\\Documents\\GitHub\\tkinter_player\\player_icons\\pause.gif')
 pause_unpause_button = tk.Button(
     frame, image=pause_icon, borderwidth=0, padx=0, command=on_pause_unpause_button_clicked)
 pause_unpause_button.image = pause_icon
 pause_unpause_button.grid(row=1, column=3,sticky='we')
 
-fast_forward_icon = tk.PhotoImage(file='/Users/plangle-08/Player/player_icons/fast_forward.gif')
+fast_forward_icon = tk.PhotoImage(file='C:\\Users\\pinto\\Documents\\GitHub\\tkinter_player\\player_icons\\fast_forward.gif')
 fast_forward_button = tk.Button(
     frame, image=fast_forward_icon, borderwidth=0, padx=0, command=on_fast_forward_button_clicked)
 fast_forward_button.image = fast_forward_icon
 fast_forward_button.grid(row=1, column=4,sticky='we')
 
-next_track_icon = tk.PhotoImage(file='/Users/plangle-08/Player/player_icons/next_track.gif')
+next_track_icon = tk.PhotoImage(file='C:\\Users\\pinto\\Documents\\GitHub\\tkinter_player\\player_icons\\next_track.gif')
 next_track_button = tk.Button(
     frame, image=next_track_icon, borderwidth=0, padx=0, command=on_next_track_button_clicked)
 next_track_button.image = next_track_icon

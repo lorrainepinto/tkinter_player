@@ -19,6 +19,11 @@ class puhlayer:
         self.framey = tk.Frame(root)
         self.imglist = []    #CHECK
 
+        self.flag = False
+        root.bind("<space>",self.space_key)
+        root.bind("<Right>",self.Right_key)
+        root.bind("<Left>",self.Left_key)
+
         self.load_img()     #CHECK
 
         self.new_width , self.new_height = self.imglist[0].size
@@ -32,7 +37,6 @@ class puhlayer:
         previous_track_button.pack(side=LEFT)
 
         play_icon = tk.PhotoImage(file='C:\\Users\\pinto\\Documents\\GitHub\\tkinter_player\\player_icons\\play.gif')
-        stop_icon = tk.PhotoImage(file='C:\\Users\\pinto\\Documents\\GitHub\\tkinter_player\\player_icons\\stop.gif')
         play_stop_button = tk.Button(
             self.framey, image=play_icon, borderwidth=0, padx=0, command=self.on_play_button_clicked)
         play_stop_button.image = play_icon
@@ -53,7 +57,6 @@ class puhlayer:
 
         self.scrollbar = tkinter.ttk.Scale(
             self.framey, from_=1, to=int(len(self.imglist)), command=self.on_scrollbar_changed)
-        #self.scrollbar.set(1)
         self.scrollbar.pack(side=RIGHT, fill=X, expand=YES, padx=5)
 
         self.framey.pack(side=BOTTOM, fill=X)
@@ -69,24 +72,27 @@ class puhlayer:
         self.scrollbar.set(1)
 
     def on_play_button_clicked(self):
+        self.flag = True
         self.i = int(self.scrollbar.get())
         self.fps = 24
 
         self.all_jobs = []
 
-        for i in range(int(self.i), len(self.imglist) - 1):
+        for i in range(int(self.i), len(self.imglist)):
             self._job = self.background_label.after(round(1000 / self.fps) * (i + 1), self._change_image)
             self.all_jobs.append(self._job)
 
     def on_pause_button_clicked(self):
-        if self._job is not None:
+        self.flag = False
+        if self.all_jobs is not None:
             for job in self.all_jobs:
                 self.background_label.after_cancel(job)
             self._job = None
+        self.all_jobs.clear()
 
 
     def on_next_track_button_clicked(self):
-        self.scrollbar.set(100)
+        self.scrollbar.set(int(len(self.imglist)))
 
     def on_scrollbar_changed(self,e=None):
         value = self.scrollbar.get()
@@ -119,7 +125,6 @@ class puhlayer:
 
         ############################################################################################
 
-
     def _resize_image(self, event):
         self.new_width = event.width
         self.new_height = event.height
@@ -131,19 +136,20 @@ class puhlayer:
 
     def _change_image(self):
         self.i = self.i + 1
-        #print(self.i)  # FOR DEBUGGING
-        self.image = self.imglist[self.i]
-        self.img_copy = self.image.copy()
-
-
         self.scrollbar.set(self.i)
-        self.img = self.img_copy.resize((self.new_width, self.new_height))
-        text = "playing image " + str(self.i)
-        self.status.configure(text=text)
-        self.background_image = ImageTk.PhotoImage(self.img)
-        self.background_label.pack(side=BOTTOM,fill=BOTH, expand=YES)
-        self.background_label.configure(image=self.background_image)
-        self.background_label.bind('<Configure>', self._resize_image)
+
+    def space_key(self,event):
+        if self.flag:
+            self.on_pause_button_clicked()
+        else:
+            self.on_play_button_clicked()
+
+    def Right_key(self,event):
+        value = self.scrollbar.get()
+        self.scrollbar.set(round(value)+1)
+    def Left_key(self,event):
+        value = self.scrollbar.get()
+        self.scrollbar.set(round(value)-1)
 
 
 e = puhlayer()
